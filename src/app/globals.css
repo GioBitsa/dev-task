@@ -1,15 +1,34 @@
-@import "tailwindcss";
+@import "tailwindcss" layer(base);
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --wrapperMaxWidth: 1200px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-deep-navy: #10202d; /* darkest blue-green */
+  --color-midnight-blue: #162231; /* very dark blue */
+  --color-space-blue: #223444; /* dark muted blue */
+  --color-steel-blue: #253241; /* muted steel blue */
+  --color-dark-slate: #273344; /* dark slate blue */
+  --color-deep-slate: #273847; /* similar to dark slate, slightly different */
+  --color-midnight: #152535; /* very dark midnight blue */
+  --color-cadet-blue: #8898b0; /* lighter muted blue */
+  --color-pastel-blue: #c1c9e5; /* soft pastel blue */
+  --color-bright-blue: #0f70dc; /* vibrant bright blue */
+  --color-slate-gray: #66788c; /* medium slate gray (new color) */
+  --color-white: #ffffff; /* pure white */
+}
+
+@layer utilities {
+  .wrapper {
+    max-width: var(--wrapperMaxWidth); /* from :root */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +39,15 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: #1c2e3d;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  width: 100%;
+  overflow: hidden;
 }
