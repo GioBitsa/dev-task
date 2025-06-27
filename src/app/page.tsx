@@ -8,36 +8,38 @@ import { fetchGames } from "@/lib/api";
 import { ApiResponse } from "@/types";
 
 interface Props {
-  searchParams: {
-    page?: string;
-    providers?: string;
-    categories?: string;
-    search?: string;
-  };
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export default async function Home({ searchParams }: Props) {
-  const pageNum = searchParams.page
-    ? Math.max(1, parseInt(searchParams.page))
-    : 1;
+  // Helper to normalize param to string (take first if array)
+  const getFirstParam = (param?: string | string[]) =>
+    Array.isArray(param) ? param[0] : param;
+
+  const pageParam = getFirstParam(searchParams.page);
+  const pageNum = pageParam ? Math.max(1, parseInt(pageParam)) : 1;
+
+  const providersParam = getFirstParam(searchParams.providers);
+  const providers = providersParam
+    ? providersParam.split(",").filter(Boolean)
+    : [];
+
+  const categoriesParam = getFirstParam(searchParams.categories);
+  const categories = categoriesParam
+    ? categoriesParam.split(",").filter(Boolean)
+    : [];
+
+  const search = getFirstParam(searchParams.search) || "";
 
   const limit = 20;
 
-  const providers = searchParams.providers
-    ? searchParams.providers.split(",").filter(Boolean)
-    : [];
-
-  const categories = searchParams.categories
-    ? searchParams.categories.split(",").filter(Boolean)
-    : [];
-
   try {
-    const apiResponse = await fetchGames({
+    const apiResponse: ApiResponse = await fetchGames({
       page: pageNum,
       limit,
       providers,
       categories,
-      search: searchParams.search || "",
+      search,
     });
 
     return (
@@ -48,9 +50,9 @@ export default async function Home({ searchParams }: Props) {
           games={apiResponse.data}
           pagination={apiResponse.pagination}
           currentFilters={{
-            providers: searchParams.providers || "",
-            categories: searchParams.categories || "",
-            search: searchParams.search || "",
+            providers: providersParam || "",
+            categories: categoriesParam || "",
+            search,
             page: pageNum.toString(),
           }}
         />
