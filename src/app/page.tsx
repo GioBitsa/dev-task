@@ -8,30 +8,27 @@ import { fetchGames } from "@/lib/api";
 import { ApiResponse } from "@/types";
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{
+    page?: string;
+    providers?: string;
+    categories?: string;
+    search?: string;
+  }>;
 }
 
 export default async function Home({ searchParams }: Props) {
-  // Helper to normalize param to string (take first if array)
-  const getFirstParam = (param?: string | string[]) =>
-    Array.isArray(param) ? param[0] : param;
-
-  const pageParam = getFirstParam(searchParams.page);
-  const pageNum = pageParam ? Math.max(1, parseInt(pageParam)) : 1;
-
-  const providersParam = getFirstParam(searchParams.providers);
-  const providers = providersParam
-    ? providersParam.split(",").filter(Boolean)
-    : [];
-
-  const categoriesParam = getFirstParam(searchParams.categories);
-  const categories = categoriesParam
-    ? categoriesParam.split(",").filter(Boolean)
-    : [];
-
-  const search = getFirstParam(searchParams.search) || "";
+  const params = await searchParams;
+  const pageNum = params.page ? Math.max(1, parseInt(params.page)) : 1;
 
   const limit = 20;
+
+  // parse comma separated filters into arrays
+  const providers = params.providers
+    ? params.providers.split(",").filter(Boolean)
+    : [];
+  const categories = params.categories
+    ? params.categories.split(",").filter(Boolean)
+    : [];
 
   try {
     const apiResponse: ApiResponse = await fetchGames({
@@ -39,7 +36,7 @@ export default async function Home({ searchParams }: Props) {
       limit,
       providers,
       categories,
-      search,
+      search: params.search || "",
     });
 
     return (
@@ -50,9 +47,9 @@ export default async function Home({ searchParams }: Props) {
           games={apiResponse.data}
           pagination={apiResponse.pagination}
           currentFilters={{
-            providers: providersParam || "",
-            categories: categoriesParam || "",
-            search,
+            providers: params.providers || "",
+            categories: params.categories || "",
+            search: params.search || "",
             page: pageNum.toString(),
           }}
         />
