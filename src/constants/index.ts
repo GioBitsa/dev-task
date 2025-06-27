@@ -1,3 +1,5 @@
+import { SelectOption } from "@/types";
+
 export const menuArray = [
   {
     id: 1,
@@ -414,5 +416,146 @@ export const photoGridImages = [
   {
     id: 6,
     src: "/images/photo-grid-6.png",
+  },
+];
+
+export const collectionsOptions: SelectOption[] = [
+  {
+    id: 1,
+    label: "All Collections",
+    icon: "/icons/options-label.svg",
+    value: "All Collections",
+  },
+  {
+    id: 2,
+    label: "Featured",
+    icon: "/icons/options-label.svg",
+    value: "featured-games",
+  },
+  {
+    id: 3,
+    label: "Popular",
+    icon: "/icons/options-label.svg",
+    value: "new-releases",
+  },
+  {
+    id: 4,
+    label: "Bonus Buy",
+    icon: "/icons/options-label.svg",
+    value: "bonus-buy",
+  },
+  {
+    id: 5,
+    label: "Fruits",
+    icon: "/icons/options-label.svg",
+    value: "fruits",
+  },
+];
+
+export const providersOptions = [
+  {
+    id: 1,
+    label: "All Providers",
+    icon: "/icons/options-label.svg",
+    value: "All Providers",
+  },
+  {
+    id: 2,
+    label: "Bgaming",
+    icon: "/icons/options-label.svg",
+    value: "Bgaming",
+  },
+  {
+    id: 3,
+    label: "GameBeat",
+    icon: "/icons/options-label.svg",
+    value: "GameBeat",
+  },
+  {
+    id: 4,
+    label: "Pragmatic Play",
+    icon: "/icons/options-label.svg",
+    value: "Pragmatic Play",
+  },
+  {
+    id: 5,
+    label: "NetEnt",
+    icon: "/icons/options-label.svg",
+    value: "NetEnt",
+  },
+];
+
+export const filterTabsArray = [
+  {
+    id: 1,
+    label: "Lobby",
+    icon: "/icons/tabs/lobby.svg",
+    value: "Lobby",
+  },
+  {
+    id: 2,
+    label: "Slots",
+    icon: "/icons/tabs/slots.svg",
+    value: "Slots",
+  },
+  {
+    id: 3,
+    label: "Blackjack",
+    icon: "/icons/tabs/blackjack.svg",
+    value: "Blackjack",
+  },
+  {
+    id: 4,
+    label: "Roulette",
+    icon: "/icons/tabs/roulette.svg",
+    value: "Roulette",
+  },
+  {
+    id: 5,
+    label: "Live",
+    icon: "/icons/tabs/live-dealers.svg",
+    value: "Live",
+  },
+  {
+    id: 6,
+    label: "Baccarat",
+    icon: "/icons/tabs/baccarat.svg",
+    value: "Baccarat",
+  },
+  {
+    id: 7,
+    label: "Crash",
+    icon: "/icons/tabs/crash.svg",
+    value: "Crash",
+  },
+  {
+    id: 8,
+    label: "Dice",
+    icon: "/icons/tabs/dice.svg",
+    value: "Dice",
+  },
+  {
+    id: 9,
+    label: "Video Poker",
+    icon: "/icons/tabs/video-poker.svg",
+    value: "Video Poker",
+  },
+  {
+    id: 10,
+    label: "Fruits",
+    icon: "/icons/tabs/fruits.svg",
+    value: "Fruits",
+  },
+  {
+    id: 11,
+    label: "Books",
+    icon: "/icons/tabs/books.svg",
+    value: "Books",
+  },
+  {
+    id: 12,
+    label: "Bonus Buy",
+    icon: "/icons/tabs/bonus.svg",
+    value: "Bonus Buy",
   },
 ];

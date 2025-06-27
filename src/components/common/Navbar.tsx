@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import useIsMobile from "@/hooks/useIsMobile";
+import Balance from "./Balance";
 
 const Navbar = () => {
   const isMobile = useIsMobile(1023);
@@ -14,6 +15,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="w-20 h-10 rounded-md bg-steel-blue" />
         <div className="flex items-center gap-1">
+          <Balance />
           <Button type="secondary" icon="/icons/bell.svg" onClick={() => {}} />
           <Button type="secondary" icon="/icons/user.svg" onClick={() => {}} />
         </div>
